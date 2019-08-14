@@ -99,7 +99,7 @@ class Mage_Navadmin_Helper_Data extends Mage_Core_Helper_Abstract
 	        }
 	        $html.= '">'."\n";
 	        if($item['target'] == '_blank'){
-	        	$html.= '<a href="http://'.$item['link'].'"  target="_blank">';
+	        	$html.= '<a href="'.$item['link'].'"  target="_blank">';
 	        }else{
 	        	$html.= '<a href="'.$item['link'].'">';
 	        }

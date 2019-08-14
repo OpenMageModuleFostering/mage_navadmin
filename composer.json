@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Mage_Navadmin",
+    "type": "magento-module",
+    "license": "Open-Software-License-(OSL)",
+    "homepage": "",
+    "description": "Navigation bar administration",
+    "authors": [
+    {
+        "name": "Oliver",
+        "email": "olivertar@gmail.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

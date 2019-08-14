@@ -10,6 +10,7 @@ $installer->run("
 CREATE TABLE {$this->getTable('navadmin')} (
   `navadmin_id` int(11) unsigned NOT NULL auto_increment,
   `pid` int(11),
+  `store_id` int(11),
   `title` varchar(255) NOT NULL default '',
   `link` varchar(255) NOT NULL default '',
   `target` varchar(255) NOT NULL default '',

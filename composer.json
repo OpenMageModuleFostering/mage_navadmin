@@ -1,9 +1,9 @@
 {
     "name": "OpenMageModuleFostering/Mage_Navadmin",
     "type": "magento-module",
-    "license": "Extension-license-name-(OSL-v3.0)",
+    "license": "GNU-Lesser-General-Public-License-(LGPL)",
     "homepage": "",
-    "description": "Navigation Bar administrator",
+    "description": "Simple Navigation bar administrator",
     "authors": [
     {
         "name": "Oliver",

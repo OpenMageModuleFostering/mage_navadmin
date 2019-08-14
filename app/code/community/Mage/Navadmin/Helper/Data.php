@@ -2,56 +2,64 @@
 
 class Mage_Navadmin_Helper_Data extends Mage_Core_Helper_Abstract
 {
+
+	private $outtree = array();
+
 	public function getSelectcat(){
-		$model  = Mage::getModel('navadmin/tree');
-		$aux[0]['value'] = 0;
-		$aux[0]['label'] = 'Root';
-		$out = $this->drawSelect(0, $aux);
+    	$stores = $this->dataStores();
+        if($stores->count() > 0){
+        	foreach ($stores as $store){
+        		if($store->store_id != 0){
+					$this->outtree['value'][] = $store->store_id . '-0';
+					$this->outtree['label'][] = 'Root - ' . $store->name;
+					$this->drawSelect($store->store_id, 0);
+        		}
+        	}
+
+        }
+
+        foreach ($this->outtree['value'] as $k => $v){
+        	$out[] = array('value'=>$v, 'label'=>$this->outtree['label'][$k]);
+        }
 		return $out;
 	}
 
-	public function drawSelect($pid=0, $outini=null, $sep=1){
-		$out = array();
-		if(!empty($outini)){
-			$out = $outini;
-		}
-
+	public function drawSelect($store_id=1, $pid=0, $sep=1){
 		$spacer = '';
 		for ($i = 0; $i <= $sep; $i++){
 			$spacer.= '&nbsp;&nbsp;&nbsp;';
 		}
-
-		$items = $this->getChildrens($pid);
+		$items = $this->getChildrens($store_id, $pid);
 		if(count($items) > 0 ){
 			foreach ($items as $item){
-				$aux['value'] = $item['navadmin_id'];
-				$aux['label'] = $spacer.$item['title'];
-				$out[] = $aux;
-				$child = $this->getChildrens($item['navadmin_id']);
+				$this->outtree['value'][] = $store_id . '-' . $item['navadmin_id'];
+				$this->outtree['label'][] = $spacer . $item['title'];
+				$child = $this->getChildrens($store_id, $item['navadmin_id']);
 				if(!empty($child)){
-					$out = $this->drawSelect($item['navadmin_id'], $out, $sep + 1);
+					$this->drawSelect($store_id, $item['navadmin_id'], $sep + 1);
 				}
 			}
 		}
-		return $out;
+		return;
 	}
 
-	public function getChildrens($pid=0){
+	public function getChildrens($store_id=1, $pid=0){
 		$out = array();
         $collection = Mage::getModel('navadmin/navadmin')->getCollection()
         	->addFieldToFilter('pid', array('in'=>$pid) )
+        	->addFieldToFilter('store_id', array('in'=>$store_id) )
 			->addFieldToFilter('status', array('in'=>'1') )
 			->setOrder('position', 'asc');
-
 		foreach ($collection as $item){
 			$out[] = $item->getData();
 		}
 		return $out;
 	}
 
-	public function hasChildrens($pid=0){
+	public function hasChildrens($store_id=1,$pid=0){
         $collection = Mage::getModel('navadmin/navadmin')->getCollection()
         	->addFieldToFilter('pid', array('in'=>$pid) )
+        	->addFieldToFilter('store_id', array('in'=>$store_id) )
 			->addFieldToFilter('status', array('in'=>'1') )
 			->setOrder('position', 'asc')
 			->load();
@@ -62,10 +70,10 @@ class Mage_Navadmin_Helper_Data extends Mage_Core_Helper_Abstract
 	}
 
 
-    public function drawItem($pid=0, $level=0)
+    public function drawItem($store_id=1, $pid=0, $level=0)
     {
         $html = '';
-        $items = $this->getChildrens($pid);
+        $items = $this->getChildrens($store_id, $pid);
         if (!empty($childrens)) {
             return $html;
         }
@@ -73,7 +81,7 @@ class Mage_Navadmin_Helper_Data extends Mage_Core_Helper_Abstract
 		$totreg = count($items);
         foreach ($items as $k => $item){
 	        $html.= '<li';
-	        $hasChildrens = $this->hasChildrens($item['navadmin_id']);
+	        $hasChildrens = $this->hasChildrens($store_id, $item['navadmin_id']);
 	        if ($hasChildrens) {
 	             $html.= ' onmouseover="toggleMenu(this,1)" onmouseout="toggleMenu(this,0)"';
 	        }
@@ -99,7 +107,7 @@ class Mage_Navadmin_Helper_Data extends Mage_Core_Helper_Abstract
 
 	        if ($hasChildrens){
 	            $htmlChildren = '';
-                $htmlChildren.= $this->drawItem($item['navadmin_id'], $level+1);
+                $htmlChildren.= $this->drawItem($store_id,$item['navadmin_id'], $level+1);
 	            if (!empty($htmlChildren)) {
 	                $html.= '<ul class="level' . $level . '">'."\n"
 	                        .$htmlChildren
@@ -110,5 +118,30 @@ class Mage_Navadmin_Helper_Data extends Mage_Core_Helper_Abstract
 	        $i++;
         }
         return $html;
+    }
+
+    public function getStores(){
+    	$out = array();
+    	$stores = $this->dataStores();
+        if($stores->count() > 0){
+        	$i = 0;
+        	foreach ($stores as $store){
+        		if($store->store_id != 0){
+					$out[$i]['value'] = $store->store_id;
+					$out[$i]['label'] = $store->name;
+					$i++;
+        		}
+        	}
+        }
+        return $out;
+    }
+
+    public function dataStores(){
+    	$stores = Mage::getModel('core/store')
+                ->getResourceCollection()
+                ->addFieldToFilter('is_active', array('in'=>'1') )
+                ->setLoadDefault(true)
+                ->load();
+         return $stores;
     }
 }

@@ -8,6 +8,12 @@ class Mage_Navadmin_Block_Adminhtml_Navadmin_Edit_Tab_Form extends Mage_Adminhtm
       $this->setForm($form);
       $fieldset = $form->addFieldset('navadmin_form', array('legend'=>Mage::helper('navadmin')->__('Item information')));
 
+      $fieldset->addField('pid', 'select', array(
+          'label'     => Mage::helper('navadmin')->__('Children of'),
+          'name'      => 'pid',
+          'values'    => Mage::helper('navadmin')->getSelectcat(),
+      ));
+
       $fieldset->addField('title', 'text', array(
           'label'     => Mage::helper('navadmin')->__('Label'),
           'class'     => 'required-entry',
@@ -36,12 +42,6 @@ class Mage_Navadmin_Block_Adminhtml_Navadmin_Edit_Tab_Form extends Mage_Adminhtm
                   'label'     => Mage::helper('navadmin')->__('New window'),
               ),
           ),
-      ));
-
-      $fieldset->addField('pid', 'select', array(
-          'label'     => Mage::helper('navadmin')->__('Pid'),
-          'name'      => 'pid',
-          'values'    => Mage::helper('navadmin')->getSelectcat(),
       ));
 
       $fieldset->addField('position', 'text', array(

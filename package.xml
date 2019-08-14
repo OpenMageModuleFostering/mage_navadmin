@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Mage_Navadmin</name>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
     <stability>stable</stability>
     <license uri="http://www.opensource.org/licenses/lgpl-2.1.php">GNU Lesser General Public License (LGPL)</license>
     <channel>community</channel>
@@ -16,7 +16,7 @@ Enable/Disable items</description>
     <notes>This release include multistore feature</notes>
     <authors><author><name>Oliver</name><user>auto-converted</user><email>olivertar@gmail.com</email></author></authors>
     <date>2008-11-22</date>
-    <time>18:01:56</time>
+    <time>19:34:15</time>
     <contents><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="navadmin.xml" hash="e0f3cf59fd355d679cbdfe2eaa4cf20a"/></dir></dir></dir></dir><dir name="frontend"><dir name="default"><dir name="default"><dir name="layout"><file name="navadmin.xml" hash="79cbb3f72762ebc8436b1089a4ef6fde"/></dir><dir name="template"><dir name="navadmin"><file name="top.phtml" hash="a935ff2e8bbc13cd6fddc47a9156a3ac"/></dir></dir></dir></dir></dir></target><target name="magecommunity"><dir name="Mage"><dir name="Navadmin"><dir name="Block"><dir name="Adminhtml"><dir name="Navadmin"><dir name="Edit"><dir name="Tab"><file name="Form.php" hash="59f81a48aa738b0226542b275669d2f9"/></dir><file name="Form.php" hash="75a0c4d1d6978c6ea4227df318de6684"/><file name="Tabs.php" hash="1709f08951d71dbe5b9799623e63dc21"/></dir><file name="Edit.php" hash="c8ae5fb904e3581e190287bf533886a1"/><file name="Grid.php" hash="6dfe0821839995966531d466be07afd8"/></dir><file name="Navadmin.php" hash="370bac5766ceb3c11fd20292f4137fda"/></dir><file name="Navadmin.php" hash="1c0064780467a1c006b046c2a18c4036"/></dir><dir name="controllers"><dir name="Adminhtml"><file name="NavadminController.php" hash="c66b2adcfcea47d21abc3af1f9acd84d"/></dir><file name="IndexController.php" hash="9d3482797882f5dc4c5d2308f55e10e3"/></dir><dir name="etc"><file name="config.xml" hash="8d6b202e30fed22abc066bbb80fff127"/></dir><dir name="Helper"><file name="Data.php" hash="3d579e82917ea19561ef4ea1608f93a5"/></dir><dir name="Model"><dir name="Mysql4"><dir name="Navadmin"><file name="Collection.php" hash="9635425cc867d26b9c1cbb9625714a16"/></dir><file name="Navadmin.php" hash="ffb1441070adc6198d22fc5d6c39eabb"/></dir><file name="Navadmin.php" hash="bdf57884f6b450414032ac8ac061f5dd"/><file name="Status.php" hash="d829853984dd1297d90d736299405d56"/><file name="Tree.php" hash="ab98e484af6b9fad35055fb74b50ef20"/></dir><dir name="sql"><dir name="navadmin_setup"><file name="mysql4-install-0.1.0.php" hash="c89a55173d536660d3947cd2da573ef6"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Mage_Navadmin.xml" hash="c42b6689f88bfedb3c765690ca39d621"/></dir></target></contents>
     <compatible/>
     <dependencies><required><package><name></name><channel>magento-core</channel><min></min><max></max></package></required></dependencies>

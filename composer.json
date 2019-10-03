@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Mage_Navadmin",
+    "name": "OpenMageModuleFostering\/Mage_Navadmin",
     "type": "magento-module",
     "license": "GNU-Lesser-General-Public-License-(LGPL)",
     "homepage": "",
     "description": "Simple Navigation bar administrator",
     "authors": [
-    {
-        "name": "Oliver",
-        "email": "olivertar@gmail.com"
-    }
-],
+        {
+            "name": "Oliver",
+            "email": "olivertar@gmail.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
